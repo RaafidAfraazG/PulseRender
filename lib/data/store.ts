@@ -31,7 +31,9 @@ import { monitor } from '@/lib/performance/monitor';
 
 export class DataStore {
   private readonly buffers = new Map<string, DataPoint[]>();
-  private readonly maxPerCategory: number;
+  private maxPerCategory: number;
+  private maxBufferSize: number;
+  private readonly categoryCount: number;
   private totalStoredCount = 0;
   private totalReceivedCount = 0;
   private version = 0;
@@ -39,8 +41,32 @@ export class DataStore {
   private readonly subscribers = new Set<() => void>();
 
   constructor(maxTotalSize: number, categoryCount: number) {
-    // Guard against divide-by-zero
-    this.maxPerCategory = Math.max(100, Math.floor(maxTotalSize / Math.max(1, categoryCount)));
+    this.maxBufferSize = maxTotalSize;
+    this.categoryCount = Math.max(1, categoryCount);
+    this.maxPerCategory = Math.max(100, Math.floor(maxTotalSize / this.categoryCount));
+  }
+
+  /**
+   * Dynamically adjusts ring buffer max capacity (e.g., expanding 10K -> 20K -> 30K -> 50K -> 100K).
+   */
+  setMaxBufferSize(newMaxTotalSize: number): void {
+    this.maxBufferSize = newMaxTotalSize;
+    this.maxPerCategory = Math.max(100, Math.floor(newMaxTotalSize / this.categoryCount));
+
+    // Trim existing buffers immediately if over new capacity
+    for (const buf of this.buffers.values()) {
+      if (buf.length > this.maxPerCategory) {
+        buf.splice(0, buf.length - this.maxPerCategory);
+      }
+    }
+
+    this.version++;
+    monitor.setStoredPointCount(this.getStoredCount());
+    this.notifySubscribers();
+  }
+
+  getMaxBufferSize(): number {
+    return this.maxBufferSize;
   }
 
   // ── Write ───────────────────────────────────────────────────────────────
