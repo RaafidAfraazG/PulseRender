@@ -126,10 +126,21 @@ export function LineChart({ config }: LineChartProps): React.JSX.Element {
     <article className={styles.panel} aria-label={`${config.label} chart`}>
       <header className={styles.header}>
         <span className={styles.title}>{config.label}</span>
-        <span className={styles.badge}>
-          <span className={styles.liveDot} aria-hidden="true" />
-          {customDomain ? 'PAUSED (PAN/ZOOM)' : 'LIVE'}
-        </span>
+        {customDomain ? (
+          <button
+            type="button"
+            className={styles.resumeBtn}
+            onClick={() => setCustomDomain(null)}
+            title="Resume live streaming and reset viewport"
+          >
+            <span>▶ Resume Live</span>
+          </button>
+        ) : (
+          <span className={styles.badge}>
+            <span className={styles.liveDot} aria-hidden="true" />
+            LIVE
+          </span>
+        )}
       </header>
       <div ref={containerRef} className={styles.surface} style={{ cursor: 'grab' }}>
         <canvas ref={canvasRef} className={styles.canvas} />

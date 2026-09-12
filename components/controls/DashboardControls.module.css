@@ -108,6 +108,9 @@
   font-size: var(--text-xs);
   font-weight: 500;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   transition: all 120ms ease;
 }
 
@@ -115,4 +118,18 @@
   background: #f8fafc;
   border-color: var(--border-emphasis);
   color: var(--text-primary);
+}
+
+.resetBtnActive {
+  background: #e0e7ff !important;
+  border-color: #818cf8 !important;
+  color: #4338ca !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.25);
+}
+
+.resetBtnActive:hover {
+  background: #4f46e5 !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
 }

@@ -41,6 +41,7 @@ export function DashboardControls(): React.JSX.Element {
     ui,
     activeCategories,
     aggregationMode,
+    customDomain,
     setTimeRange,
     setAggregationMode,
     toggleCategory,
@@ -122,15 +123,15 @@ export function DashboardControls(): React.JSX.Element {
         </div>
       </div>
 
-      {/* ── Reset View ────────────────────────────────────────────── */}
+      {/* ── Reset View / Resume Live ──────────────────────────────── */}
       <button
         type="button"
-        className={styles.resetBtn}
+        className={`${styles.resetBtn} ${customDomain ? styles.resetBtnActive : ''}`}
         onClick={resetView}
-        title="Reset zoom, pan, and restore default viewport"
+        title="Resume live streaming and reset viewport"
       >
-        <span>↺</span>
-        <span>Reset View</span>
+        <span>{customDomain ? '▶' : '↺'}</span>
+        <span>{customDomain ? 'Resume Live' : 'Reset View'}</span>
       </button>
     </section>
   );
