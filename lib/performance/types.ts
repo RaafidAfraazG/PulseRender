@@ -1,5 +1,5 @@
 /**
- * PulseRender — Performance Subsystem Type Definitions
+ * PulseRender - Performance Subsystem Type Definitions
  */
 
 export type StressTestLevel = 'live' | '10k' | '25k' | '50k' | '100k';

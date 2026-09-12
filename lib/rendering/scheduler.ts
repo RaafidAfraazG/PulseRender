@@ -1,5 +1,5 @@
 /**
- * PulseRender — Shared requestAnimationFrame Scheduler
+ * PulseRender - Shared requestAnimationFrame Scheduler
  *
  * ONE rAF loop drives ALL chart renderers in the application.
  *
@@ -30,7 +30,7 @@
  *
  * ── Browser-only ─────────────────────────────────────────────────────────
  *
- * This module uses requestAnimationFrame — it must never be imported by
+ * This module uses requestAnimationFrame - it must never be imported by
  * server-side code. All importers are 'use client' chart components.
  */
 

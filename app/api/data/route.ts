@@ -1,5 +1,5 @@
 /**
- * PulseRender — SSE Data Route
+ * PulseRender - SSE Data Route
  *
  * Converts the Phase 1 placeholder into a proper Server-Sent Events stream.
  *
@@ -36,9 +36,9 @@ const POINTS_PER_CATEGORY = Math.floor(pointsPerTick / categoryCount);
 const PING_INTERVAL_MS = 30_000;
 
 const SSE_HEADERS: HeadersInit = {
-  'Content-Type':  'text/event-stream; charset=utf-8',
+  'Content-Type': 'text/event-stream; charset=utf-8',
   'Cache-Control': 'no-cache, no-transform',
-  'Connection':    'keep-alive',
+  'Connection': 'keep-alive',
   // Disable Nginx/Vercel proxy buffering so events reach the client immediately
   'X-Accel-Buffering': 'no',
 };
@@ -48,8 +48,8 @@ function sseFrame(event: string, data: string): Uint8Array {
 }
 
 export function GET(request: Request): Response {
-  let dataInterval:   ReturnType<typeof setInterval> | null = null;
-  let pingInterval:   ReturnType<typeof setInterval> | null = null;
+  let dataInterval: ReturnType<typeof setInterval> | null = null;
+  let pingInterval: ReturnType<typeof setInterval> | null = null;
 
   const stream = new ReadableStream({
     start(controller): void {

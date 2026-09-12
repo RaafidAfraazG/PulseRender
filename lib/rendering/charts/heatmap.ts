@@ -1,5 +1,5 @@
 /**
- * PulseRender — Heatmap Canvas Renderer
+ * PulseRender - Heatmap Canvas Renderer
  *
  * ── Data → Grid Mapping ──────────────────────────────────────────────────
  *
@@ -33,23 +33,23 @@ import { clearCanvas } from '../canvas';
 // ── Config ────────────────────────────────────────────────────────────────
 
 export interface HeatmapRenderConfig {
-  readonly columns:    number;
-  readonly windowMs:   number;
+  readonly columns: number;
+  readonly windowMs: number;
   readonly categories: readonly string[];
-  readonly cellGap:    number;
-  readonly colorLow:   string;   // value = 0
-  readonly colorMid:   string;   // value = 50
-  readonly colorHigh:  string;   // value = 100
+  readonly cellGap: number;
+  readonly colorLow: string;   // value = 0
+  readonly colorMid: string;   // value = 50
+  readonly colorHigh: string;   // value = 100
 }
 
 export const DEFAULT_HEATMAP_CONFIG: HeatmapRenderConfig = {
-  columns:    60,
-  windowMs:   60_000,
+  columns: 60,
+  windowMs: 60_000,
   categories: ['primary', 'secondary', 'tertiary', 'quaternary'],
-  cellGap:    1,
-  colorLow:   '#0f1117',
-  colorMid:   '#22d3ee',
-  colorHigh:  '#f0fdf4',
+  cellGap: 1,
+  colorLow: '#0f1117',
+  colorMid: '#22d3ee',
+  colorHigh: '#f0fdf4',
 };
 
 // ── Color interpolation ───────────────────────────────────────────────────
@@ -72,8 +72,8 @@ function lerpRgb(
 
 function intensityToColor(
   intensity: number,  // 0–100
-  low:  [number, number, number],
-  mid:  [number, number, number],
+  low: [number, number, number],
+  mid: [number, number, number],
   high: [number, number, number],
 ): string {
   const t = Math.max(0, Math.min(1, intensity / 100));
@@ -84,9 +84,9 @@ function intensityToColor(
 // ── Renderer ──────────────────────────────────────────────────────────────
 
 export function renderHeatmap(
-  ctx:    CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D,
   points: readonly DataPoint[],
-  dims:   ChartDimensions,
+  dims: ChartDimensions,
   config: HeatmapRenderConfig,
 ): void {
   clearCanvas(ctx, dims);
@@ -98,19 +98,19 @@ export function renderHeatmap(
   const rows = categories.length;
   if (rows === 0 || columns === 0) return;
 
-  const now         = Date.now();
+  const now = Date.now();
   const windowStart = now - windowMs;
-  const bucketMs    = windowMs / columns;
+  const bucketMs = windowMs / columns;
 
   // Pre-compute colour RGB tuples once per frame (not per cell)
-  const rgbLow  = hexToRgb(config.colorLow);
-  const rgbMid  = hexToRgb(config.colorMid);
+  const rgbLow = hexToRgb(config.colorLow);
+  const rgbMid = hexToRgb(config.colorMid);
   const rgbHigh = hexToRgb(config.colorHigh);
 
   // Build grid sums and counts
   // Using flat arrays instead of 2D arrays for cache efficiency
-  const sums:   Float64Array = new Float64Array(rows * columns);
-  const counts: Uint32Array  = new Uint32Array(rows * columns);
+  const sums: Float64Array = new Float64Array(rows * columns);
+  const counts: Uint32Array = new Uint32Array(rows * columns);
 
   for (const pt of points) {
     if (pt.timestamp < windowStart) continue;
@@ -122,18 +122,18 @@ export function renderHeatmap(
     if (col < 0) continue;
 
     const idx = rowIdx * columns + col;
-    sums[idx]  += pt.value;
+    sums[idx] += pt.value;
     counts[idx] += 1;
   }
 
   // Precompute cell geometry
-  const cellW = Math.max(1, (area.width  - cellGap * (columns - 1)) / columns);
-  const cellH = Math.max(1, (area.height - cellGap * (rows    - 1)) / rows);
+  const cellW = Math.max(1, (area.width - cellGap * (columns - 1)) / columns);
+  const cellH = Math.max(1, (area.height - cellGap * (rows - 1)) / rows);
 
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < columns; col++) {
-      const idx    = row * columns + col;
-      const count  = counts[idx];
+      const idx = row * columns + col;
+      const count = counts[idx];
       const avgVal = count > 0 ? sums[idx] / count : NaN;
 
       const x = Math.round(area.x + col * (cellW + cellGap));

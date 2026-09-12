@@ -1,5 +1,5 @@
 /**
- * PulseRender — Scatter Plot Canvas Renderer
+ * PulseRender - Scatter Plot Canvas Renderer
  *
  * Renders data points from ALL four categories as colored circles.
  * X-axis = timestamp, Y-axis = value.
@@ -27,30 +27,30 @@ import { clearCanvas, clipToArea } from '../canvas';
 
 export interface ScatterRenderConfig {
   readonly categoryColors: Readonly<Record<string, string>>;
-  readonly pointRadius:    number;
-  readonly pointOpacity:   number;
-  readonly yDomain:        readonly [number, number];
+  readonly pointRadius: number;
+  readonly pointOpacity: number;
+  readonly yDomain: readonly [number, number];
   readonly overrideDomain?: ViewportDomain | null;
 }
 
 export const DEFAULT_SCATTER_CONFIG: ScatterRenderConfig = {
   categoryColors: {
-    primary:    '#6366f1',
-    secondary:  '#22d3ee',
-    tertiary:   '#a78bfa',
+    primary: '#6366f1',
+    secondary: '#22d3ee',
+    tertiary: '#a78bfa',
     quaternary: '#34d399',
   },
-  pointRadius:  2.5,
+  pointRadius: 2.5,
   pointOpacity: 0.65,
-  yDomain:      [0, 100],
+  yDomain: [0, 100],
 };
 
 // ── Renderer ──────────────────────────────────────────────────────────────
 
 export function renderScatterPlot(
-  ctx:    CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D,
   points: readonly { timestamp: number; value: number; category: string }[],
-  dims:   ChartDimensions,
+  dims: ChartDimensions,
   config: ScatterRenderConfig,
 ): void {
   clearCanvas(ctx, dims);
@@ -93,7 +93,7 @@ export function renderScatterPlot(
     ctx.beginPath();
     for (const pt of catPoints) {
       const sx = dataToScreenX(pt.timestamp, bounds, area);
-      const sy = dataToScreenY(pt.value,     bounds, area);
+      const sy = dataToScreenY(pt.value, bounds, area);
       // Build a single sub-path per category
       ctx.moveTo(sx + r, sy);
       ctx.arc(sx, sy, r, 0, Math.PI * 2);

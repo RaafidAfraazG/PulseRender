@@ -1,10 +1,10 @@
 /**
- * PulseRender — SSE Payload Validator
+ * PulseRender - SSE Payload Validator
  *
  * Runtime validation at the network boundary.
  * TypeScript types do not protect us from malformed network input.
  *
- * Lightweight by design — no schema library dependency.
+ * Lightweight by design - no schema library dependency.
  * Called for every incoming SSE datapoints event.
  */
 
@@ -19,12 +19,12 @@ function isObject(v: unknown): v is Record<string, unknown> {
 function isValidDataPoint(v: unknown): v is DataPoint {
   if (!isObject(v)) return false;
   return (
-    typeof v.id        === 'string'  &&
-    typeof v.timestamp === 'number'  &&
-    typeof v.value     === 'number'  &&
-    typeof v.category  === 'string'  &&
-    Number.isFinite(v.value)         &&
-    Number.isFinite(v.timestamp)     &&
+    typeof v.id === 'string' &&
+    typeof v.timestamp === 'number' &&
+    typeof v.value === 'number' &&
+    typeof v.category === 'string' &&
+    Number.isFinite(v.value) &&
+    Number.isFinite(v.timestamp) &&
     v.timestamp > 0
   );
 }
@@ -58,7 +58,7 @@ export function parseSSEPayload(raw: string): DataPoint[] | null {
     if (isValidDataPoint(item)) {
       points.push(item);
     }
-    // Silently skip invalid items — malformed data must not crash the app
+    // Silently skip invalid items - malformed data must not crash the app
   }
 
   return points.length > 0 ? points : null;

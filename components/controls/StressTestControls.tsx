@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — Stress Test Workload Controls
+ * PulseRender - Stress Test Workload Controls
  *
  * Populates the DataStore ring buffer with 10K, 25K, 50K, or 100K synthetic points
  * for performance profiling and benchmarking, or restores live SSE streaming.
@@ -13,9 +13,9 @@ import type { StressTestLevel } from '@/lib/performance/types';
 import styles from './StressTestControls.module.css';
 
 const STRESS_LEVELS: readonly { id: Exclude<StressTestLevel, 'live'>; label: string; count: number }[] = [
-  { id: '10k',  label: '10K',  count: 10_000 },
-  { id: '25k',  label: '25K',  count: 25_000 },
-  { id: '50k',  label: '50K',  count: 50_000 },
+  { id: '10k', label: '10K', count: 10_000 },
+  { id: '25k', label: '25K', count: 25_000 },
+  { id: '50k', label: '50K', count: 50_000 },
   { id: '100k', label: '100K', count: 100_000 },
 ];
 

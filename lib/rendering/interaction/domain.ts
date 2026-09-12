@@ -1,5 +1,5 @@
 /**
- * PulseRender — Viewport Domain & Interaction Math
+ * PulseRender - Viewport Domain & Interaction Math
  *
  * Provides pure functions for zooming and panning viewport domains in data space.
  * Enforces boundary safety: `xMin < xMax`, `yMin < yMax`, min range limits.

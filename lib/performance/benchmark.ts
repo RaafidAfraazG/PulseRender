@@ -1,5 +1,5 @@
 /**
- * PulseRender — Automated Benchmark Runner
+ * PulseRender - Automated Benchmark Runner
  *
  * Runs a controlled 5-second benchmark for a given workload size (10K, 25K, 50K, 100K).
  * Aggregates FPS, frame times, processing durations, and memory usage into a BenchmarkResult object.

@@ -1,5 +1,5 @@
 /**
- * PulseRender — Browser Heap Memory Reader
+ * PulseRender - Browser Heap Memory Reader
  *
  * Reads performance.memory JS heap statistics when supported by the browser engine (Chrome/Edge).
  * Gracefully returns null on engines without performance.memory support (Firefox/Safari).

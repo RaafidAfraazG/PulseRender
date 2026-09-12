@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — Performance Monitor Overlay Panel
+ * PulseRender - Performance Monitor Overlay Panel
  *
  * Real-time performance dashboard displaying measured FPS, frame timing, processing duration,
  * chart render duration, interaction latency, and heap memory usage.
@@ -42,8 +42,8 @@ export function PerformanceMonitor({ onClose }: PerformanceMonitorProps): React.
     metrics.status === 'healthy'
       ? styles.healthy
       : metrics.status === 'degraded'
-      ? styles.degraded
-      : styles.poor;
+        ? styles.degraded
+        : styles.poor;
 
   return (
     <aside className={styles.overlay} aria-label="Performance metrics monitor">

@@ -1,5 +1,5 @@
 /**
- * PulseRender — Rendering Layer Type Definitions
+ * PulseRender - Rendering Layer Type Definitions
  *
  * Pure TypeScript types for the rendering subsystem.
  * No React dependencies, no DOM references.
@@ -28,10 +28,10 @@ export interface ChartDimensions {
 }
 
 export interface ChartPadding {
-  readonly top:    number;
-  readonly right:  number;
+  readonly top: number;
+  readonly right: number;
   readonly bottom: number;
-  readonly left:   number;
+  readonly left: number;
 }
 
 /** The drawable chart area after subtracting padding from ChartDimensions */
@@ -40,7 +40,7 @@ export interface ChartArea {
   readonly x: number;
   /** Top edge in CSS pixels */
   readonly y: number;
-  readonly width:  number;
+  readonly width: number;
   readonly height: number;
 }
 
@@ -72,8 +72,8 @@ export type RenderCallback = (timestamp: number) => void;
  * and X-axis labels (bottom).
  */
 export const DEFAULT_PADDING: ChartPadding = {
-  top:    16,
-  right:  16,
+  top: 16,
+  right: 16,
   bottom: 36,
-  left:   52,
+  left: 52,
 } as const;

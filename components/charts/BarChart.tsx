@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — BarChart Component
+ * PulseRender - BarChart Component
  *
  * Renders vertical distribution bars using Canvas, driven by the shared rAF scheduler.
  * Consumes derived filtered/aggregated data from the DerivedDataPipeline.
@@ -28,18 +28,18 @@ interface BarChartProps {
 }
 
 export function BarChart({ config }: BarChartProps): React.JSX.Element {
-  const store        = useDataStore();
+  const store = useDataStore();
   const { ui, activeCategories, aggregationMode, customDomain, setCustomDomain } = useDashboard();
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef    = useRef<HTMLCanvasElement>(null);
-  const size         = useResizeObserver(containerRef);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const size = useResizeObserver(containerRef);
 
-  const pipeline     = useMemo(() => new DerivedDataPipeline(), []);
+  const pipeline = useMemo(() => new DerivedDataPipeline(), []);
 
   const dims = useMemo<ChartDimensions>(() => ({
-    width:   Math.max(1, size.width),
-    height:  Math.max(1, size.height),
-    dpr:     typeof window !== 'undefined' ? (window.devicePixelRatio || 1) : 1,
+    width: Math.max(1, size.width),
+    height: Math.max(1, size.height),
+    dpr: typeof window !== 'undefined' ? (window.devicePixelRatio || 1) : 1,
     padding: DEFAULT_PADDING,
   }), [size.width, size.height]);
 
@@ -78,7 +78,7 @@ export function BarChart({ config }: BarChartProps): React.JSX.Element {
 
     const renderConfig = {
       ...DEFAULT_BAR_CONFIG,
-      color:  config.color,
+      color: config.color,
       barGap: config.barGap ?? DEFAULT_BAR_CONFIG.barGap,
     };
 

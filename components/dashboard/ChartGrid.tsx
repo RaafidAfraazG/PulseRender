@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — ChartGrid Component
+ * PulseRender - ChartGrid Component
  *
  * Client Component that maps chart configurations to their respective
  * high-performance Canvas chart components.

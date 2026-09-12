@@ -1,5 +1,5 @@
 /**
- * PulseRender — Derived Data Processing Pipeline & Invalidation Cache
+ * PulseRender - Derived Data Processing Pipeline & Invalidation Cache
  *
  * Combines raw data, time range selection, category filtering, and time-bucket aggregation.
  * Maintains an internal versioned cache so that chart renderers calling getDerivedData()

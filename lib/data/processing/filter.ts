@@ -1,5 +1,5 @@
 /**
- * PulseRender — Category Filtering Module
+ * PulseRender - Category Filtering Module
  *
  * Pure function that filters data points matching the active category set.
  * Framework-independent, zero mutation.

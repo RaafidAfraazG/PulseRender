@@ -1,5 +1,5 @@
 /**
- * PulseRender — Deterministic Time-Bucket Aggregation
+ * PulseRender - Deterministic Time-Bucket Aggregation
  *
  * Aggregates raw DataPoints into fixed time buckets (1m, 5m, 1h) per category.
  * Formula: `bucketStart = Math.floor(timestamp / bucketMs) * bucketMs`

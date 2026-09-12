@@ -1,6 +1,6 @@
-# PulseRender — Architecture Documentation
+# PulseRender - Architecture Documentation
 
-> **Status:** Phase 5 — Virtualized Data Table & Dashboard Completeness Complete  
+> **Status:** Phase 5 - Virtualized Data Table & Dashboard Completeness Complete  
 > **Last updated:** Phase 5 completion
 
 ---
@@ -14,7 +14,7 @@ The core performance problem PulseRender is designed to solve:
 > "Standard React rendering and SVG-based charting cannot sustain 60 FPS when data volume exceeds a few thousand points updated at 10 Hz. The DOM is too slow for this workload."
 
 PulseRender's architecture avoids this problem by:
-1. Keeping React responsible only for orchestration and UI state — not for per-frame rendering.
+1. Keeping React responsible only for orchestration and UI state - not for per-frame rendering.
 2. Using HTML Canvas for high-throughput pixel rendering (bypasses DOM).
 3. Using SVG only for static overlays (axes, labels, gridlines) that update cleanly without DOM thrashing.
 4. Implementing a framework-independent analytical pipeline with versioned invalidation caching.

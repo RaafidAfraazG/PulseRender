@@ -1,5 +1,5 @@
 /**
- * PulseRender — Central Performance Monitor Subsystem
+ * PulseRender - Central Performance Monitor Subsystem
  *
  * Module-level singleton managing frame timing, FPS rolling averages, memory metrics,
  * processing durations, and interaction latency.

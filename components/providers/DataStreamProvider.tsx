@@ -1,13 +1,13 @@
 'use client';
 
 /**
- * PulseRender — DataStreamProvider
+ * PulseRender - DataStreamProvider
  *
  * Owns the SSE connection, the DataStore, and exposes them to the component tree
  * through two separate React Contexts:
  *
- *   DataStoreContext  — provides the DataStore instance (stable ref, no re-renders)
- *   DataStreamContext — provides { status, dataCount } (React state, rare re-renders)
+ *   DataStoreContext  - provides the DataStore instance (stable ref, no re-renders)
+ *   DataStreamContext - provides { status, dataCount } (React state, rare re-renders)
  *
  * ── Architecture ─────────────────────────────────────────────────────────
  *
@@ -18,16 +18,16 @@
  *     on tick  → setDataCount(store.getStoredCount()) [throttled, every 2s]
  *     on open  → setStatus('live')                    [once per connection]
  *     on error → setStatus('error')                   [retry handled by browser]
- *     on unmount → source.close()  [critical — prevents SSE leak]
+ *     on unmount → source.close()  [critical - prevents SSE leak]
  *
  * ── Why two contexts? ────────────────────────────────────────────────────
  *
- * Chart renderers need the DataStore — a stable object that never changes.
+ * Chart renderers need the DataStore - a stable object that never changes.
  * Putting it in a context whose value NEVER changes means chart components
  * will never re-render due to this context changing.
  *
  * Stream status (live/connecting/error) and data count DO change and DO need
- * to trigger React re-renders — but only for the StreamStatus UI component,
+ * to trigger React re-renders - but only for the StreamStatus UI component,
  * not for the charts. Keeping them in a separate context isolates those
  * re-renders.
  *
@@ -56,7 +56,7 @@ import type { DataStreamConfig } from '@/lib/types';
 export type StreamStatus = 'connecting' | 'live' | 'error';
 
 export interface DataStreamContextValue {
-  readonly status:    StreamStatus;
+  readonly status: StreamStatus;
   readonly dataCount: number;
 }
 
@@ -72,7 +72,7 @@ export const DataStreamContext = createContext<DataStreamContextValue | null>(nu
 
 /**
  * Access the DataStore instance.
- * Stable — calling this hook in a chart component does NOT cause re-renders
+ * Stable - calling this hook in a chart component does NOT cause re-renders
  * when data arrives.
  */
 export function useDataStore(): DataStore {
@@ -95,12 +95,12 @@ export function useDataStream(): DataStreamContextValue {
 // ── Provider ──────────────────────────────────────────────────────────────
 
 interface DataStreamProviderProps {
-  readonly children:     ReactNode;
+  readonly children: ReactNode;
   readonly streamConfig: DataStreamConfig;
 }
 
 const COUNT_UPDATE_INTERVAL_MS = 2_000; // update the data count display every 2s
-const SSE_ENDPOINT             = '/api/data';
+const SSE_ENDPOINT = '/api/data';
 
 export function DataStreamProvider({
   children,
@@ -112,7 +112,7 @@ export function DataStreamProvider({
   );
 
   // React state: only for UI indicators
-  const [status,    setStatus]    = useState<StreamStatus>('connecting');
+  const [status, setStatus] = useState<StreamStatus>('connecting');
   const [dataCount, setDataCount] = useState(0);
 
   useEffect(() => {
@@ -127,7 +127,7 @@ export function DataStreamProvider({
       const points = parseSSEPayload(event.data);
       if (points) {
         store.push(points);
-        // Data count is NOT updated here — throttled below
+        // Data count is NOT updated here - throttled below
       }
     });
 
@@ -143,14 +143,14 @@ export function DataStreamProvider({
       setDataCount(store.getStoredCount());
     }, COUNT_UPDATE_INTERVAL_MS);
 
-    // ── Cleanup: CRITICAL — must close EventSource on unmount ─────────────
+    // ── Cleanup: CRITICAL - must close EventSource on unmount ─────────────
     return () => {
       source.close();
       clearInterval(countTimer);
     };
   }, [store]); // store ref is stable, effect runs once
 
-  // Stable stream context value — only recreated when status/count changes
+  // Stable stream context value - only recreated when status/count changes
   const streamValue = useMemo<DataStreamContextValue>(
     () => ({ status, dataCount }),
     [status, dataCount],

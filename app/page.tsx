@@ -1,8 +1,8 @@
 /**
- * PulseRender — Root Page
+ * PulseRender - Root Page
  *
  * Immediately redirects to /dashboard.
- * This is a Server Component — redirect happens server-side, no flash.
+ * This is a Server Component - redirect happens server-side, no flash.
  */
 
 import { redirect } from 'next/navigation';

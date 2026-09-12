@@ -1,5 +1,5 @@
 /**
- * PulseRender — Coordinate Transform Utilities
+ * PulseRender - Coordinate Transform Utilities
  *
  * Pure functions that convert between data-space and screen-space coordinates.
  * No React, no DOM access, no side effects.
@@ -30,10 +30,10 @@ import type { ChartDimensions, ChartArea, DataBounds } from './types';
 export function computeChartArea(dims: ChartDimensions): ChartArea {
   const { padding, width, height } = dims;
   return {
-    x:      padding.left,
-    y:      padding.top,
-    width:  Math.max(0, width  - padding.left - padding.right),
-    height: Math.max(0, height - padding.top  - padding.bottom),
+    x: padding.left,
+    y: padding.top,
+    width: Math.max(0, width - padding.left - padding.right),
+    height: Math.max(0, height - padding.top - padding.bottom),
   };
 }
 
@@ -74,8 +74,8 @@ export function computeDataBounds(
   for (const p of points) {
     if (p.timestamp < xMin) xMin = p.timestamp;
     if (p.timestamp > xMax) xMax = p.timestamp;
-    if (p.value     < yMin) yMin = p.value;
-    if (p.value     > yMax) yMax = p.value;
+    if (p.value < yMin) yMin = p.value;
+    if (p.value > yMax) yMax = p.value;
   }
 
   if (fixedYMin !== undefined) yMin = fixedYMin;
@@ -95,9 +95,9 @@ export function computeDataBounds(
  * within the chart area.
  */
 export function dataToScreenX(
-  dataX:  number,
+  dataX: number,
   bounds: DataBounds,
-  area:   ChartArea,
+  area: ChartArea,
 ): number {
   const ratio = (dataX - bounds.xMin) / (bounds.xMax - bounds.xMin);
   return area.x + ratio * area.width;
@@ -108,9 +108,9 @@ export function dataToScreenX(
  * Inverts the Y axis: high data values → low screen Y (near top of chart).
  */
 export function dataToScreenY(
-  dataY:  number,
+  dataY: number,
   bounds: DataBounds,
-  area:   ChartArea,
+  area: ChartArea,
 ): number {
   const ratio = (dataY - bounds.yMin) / (bounds.yMax - bounds.yMin);
   return area.y + area.height * (1 - ratio);

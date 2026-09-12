@@ -1,5 +1,5 @@
 /**
- * PulseRender — DataStore
+ * PulseRender - DataStore
  *
  * A plain TypeScript class (NO React dependency) that manages the client-side
  * ring buffer of incoming DataPoints.
@@ -14,7 +14,7 @@
  *   the oldest entries are evicted with a single splice.
  *
  * • Chart renderers call getSnapshot(category) inside their rAF callbacks.
- *   This is the only read path — no React state involved.
+ *   This is the only read path - no React state involved.
  *
  * • subscribe() / notify pattern lets the DataStreamProvider update a
  *   throttled React state (data count) without coupling to React.
@@ -56,7 +56,7 @@ export class DataStore {
 
       buf.push(point);
 
-      // Evict oldest when over capacity (simple slice — not circular array)
+      // Evict oldest when over capacity (simple slice - not circular array)
       if (buf.length > this.maxPerCategory) {
         // Remove oldest 10 % to amortise the cost
         const evict = Math.max(1, Math.floor(this.maxPerCategory * 0.1));
@@ -128,7 +128,7 @@ export class DataStore {
 
   /**
    * Returns all points from all categories combined.
-   * Creates a new array — use sparingly (scatter/heatmap only).
+   * Creates a new array - use sparingly (scatter/heatmap only).
    */
   getAllSnapshot(): readonly DataPoint[] {
     if (this.buffers.size === 0) return EMPTY;
@@ -172,5 +172,5 @@ export class DataStore {
   }
 }
 
-// Shared empty array sentinel — avoids allocations for empty reads
+// Shared empty array sentinel - avoids allocations for empty reads
 const EMPTY: readonly DataPoint[] = Object.freeze([]);

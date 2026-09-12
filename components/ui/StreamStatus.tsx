@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — StreamStatus Component
+ * PulseRender - StreamStatus Component
  *
  * Displays live stream connection status (Live / Connecting / Error)
  * and buffered point count.
@@ -18,15 +18,15 @@ export function StreamStatus(): React.JSX.Element {
     status === 'live'
       ? 'LIVE STREAM'
       : status === 'connecting'
-      ? 'CONNECTING'
-      : 'RECONNECTING';
+        ? 'CONNECTING'
+        : 'RECONNECTING';
 
   const dotClass =
     status === 'live'
       ? styles.live
       : status === 'connecting'
-      ? styles.connecting
-      : styles.error;
+        ? styles.connecting
+        : styles.error;
 
   return (
     <div className={styles.container} aria-label="Stream status indicator">

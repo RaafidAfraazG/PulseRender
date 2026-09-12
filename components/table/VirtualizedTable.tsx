@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — Custom Lightweight Virtualized Table Engine
+ * PulseRender - Custom Lightweight Virtualized Table Engine
  *
  * Virtualizes long data lists up to 100,000 rows.
  * Computes visible index range based on scrollTop, mounting only ~30–50 DOM rows

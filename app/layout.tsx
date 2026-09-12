@@ -1,5 +1,5 @@
 /**
- * PulseRender — Root Layout
+ * PulseRender - Root Layout
  *
  * Server Component. Sets global metadata, imports the design-system CSS,
  * and wraps the app in the DashboardProvider client boundary.
@@ -17,7 +17,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'PulseRender — High-Performance Real-Time Data Visualization',
+    default: 'PulseRender - High-Performance Real-Time Data Visualization',
     template: '%s | PulseRender',
   },
   description:

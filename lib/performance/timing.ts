@@ -1,5 +1,5 @@
 /**
- * PulseRender — High-Precision Performance Timing Utilities
+ * PulseRender - High-Precision Performance Timing Utilities
  *
  * Wraps performance.now() to measure processing, rendering, and interaction latency.
  */

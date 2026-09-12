@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — Dashboard Controls Component
+ * PulseRender - Dashboard Controls Component
  *
  * Exposes time range selection, time-bucket aggregation mode, category filtering,
  * and view reset controls to the user.
@@ -15,25 +15,25 @@ import { useDashboard } from '@/components/providers/DashboardProvider';
 import styles from './DashboardControls.module.css';
 
 const TIME_RANGE_OPTIONS: readonly { id: TimeRangePreset; label: string }[] = [
-  { id: '1m',  label: '1m' },
-  { id: '5m',  label: '5m' },
+  { id: '1m', label: '1m' },
+  { id: '5m', label: '5m' },
   { id: '15m', label: '15m' },
-  { id: '1h',  label: '1h' },
+  { id: '1h', label: '1h' },
   { id: 'all', label: 'All' },
 ];
 
 const AGGREGATION_OPTIONS: readonly { id: AggregationMode; label: string }[] = [
   { id: 'raw', label: 'Raw' },
-  { id: '1m',  label: '1m' },
-  { id: '5m',  label: '5m' },
-  { id: '1h',  label: '1h' },
+  { id: '1m', label: '1m' },
+  { id: '5m', label: '5m' },
+  { id: '1h', label: '1h' },
 ];
 
 const CATEGORY_META: readonly { id: string; label: string; color: string }[] = [
-  { id: 'primary',    label: 'Alpha',   color: '#6366f1' },
-  { id: 'secondary',  label: 'Beta',    color: '#22d3ee' },
-  { id: 'tertiary',   label: 'Gamma',   color: '#a78bfa' },
-  { id: 'quaternary', label: 'Delta',   color: '#34d399' },
+  { id: 'primary', label: 'Alpha', color: '#6366f1' },
+  { id: 'secondary', label: 'Beta', color: '#22d3ee' },
+  { id: 'tertiary', label: 'Gamma', color: '#a78bfa' },
+  { id: 'quaternary', label: 'Delta', color: '#34d399' },
 ];
 
 export function DashboardControls(): React.JSX.Element {

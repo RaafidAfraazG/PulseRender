@@ -1,5 +1,5 @@
 /**
- * PulseRender — Default Dashboard Configuration
+ * PulseRender - Default Dashboard Configuration
  *
  * This module exports the server-side default configuration for the dashboard.
  * It is consumed by Server Components and passed as serialisable props to
@@ -13,7 +13,7 @@ import type { DashboardConfig } from '@/lib/types';
 
 /**
  * Default dashboard configuration.
- * Safe to import in Server Components — no browser APIs used here.
+ * Safe to import in Server Components - no browser APIs used here.
  */
 export const DEFAULT_DASHBOARD_CONFIG: DashboardConfig = {
   title: 'PulseRender',
@@ -23,38 +23,38 @@ export const DEFAULT_DASHBOARD_CONFIG: DashboardConfig = {
     {
       id: 'chart-line-primary',
       type: 'line',
-      label: 'Time Series — Line',
+      label: 'Time Series - Line',
       dataKey: 'primary',
       visible: true,
-      color: '#6366f1',
+      color: '#4f46e5',
       strokeWidth: 2,
       showDots: false,
     },
     {
       id: 'chart-bar-primary',
       type: 'bar',
-      label: 'Distribution — Bar',
+      label: 'Distribution - Bar',
       dataKey: 'primary',
       visible: true,
-      color: '#22d3ee',
+      color: '#0284c7',
       barGap: 2,
     },
     {
       id: 'chart-scatter-primary',
       type: 'scatter',
-      label: 'Correlation — Scatter',
+      label: 'Correlation - Scatter',
       dataKey: 'secondary',
       visible: true,
-      color: '#a78bfa',
+      color: '#7c3aed',
       pointRadius: 3,
     },
     {
       id: 'chart-heatmap-primary',
       type: 'heatmap',
-      label: 'Density — Heatmap',
+      label: 'Density - Heatmap',
       dataKey: 'primary',
       visible: true,
-      color: '#34d399',
+      color: '#059669',
       columns: 60,
     },
   ],

@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — LineChart Component
+ * PulseRender - LineChart Component
  *
  * Renders a continuous time-series line using Canvas, driven by the shared rAF scheduler.
  * Consumes derived filtered/aggregated data from the DerivedDataPipeline and supports
@@ -31,19 +31,19 @@ interface LineChartProps {
 }
 
 export function LineChart({ config }: LineChartProps): React.JSX.Element {
-  const store        = useDataStore();
+  const store = useDataStore();
   const { ui, activeCategories, aggregationMode, customDomain, setCustomDomain } = useDashboard();
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef    = useRef<HTMLCanvasElement>(null);
-  const svgRef       = useRef<SVGSVGElement>(null);
-  const size         = useResizeObserver(containerRef);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const size = useResizeObserver(containerRef);
 
-  const pipeline     = useMemo(() => new DerivedDataPipeline(), []);
+  const pipeline = useMemo(() => new DerivedDataPipeline(), []);
 
   const dims = useMemo<ChartDimensions>(() => ({
-    width:   Math.max(1, size.width),
-    height:  Math.max(1, size.height),
-    dpr:     typeof window !== 'undefined' ? (window.devicePixelRatio || 1) : 1,
+    width: Math.max(1, size.width),
+    height: Math.max(1, size.height),
+    dpr: typeof window !== 'undefined' ? (window.devicePixelRatio || 1) : 1,
     padding: DEFAULT_PADDING,
   }), [size.width, size.height]);
 
@@ -75,7 +75,7 @@ export function LineChart({ config }: LineChartProps): React.JSX.Element {
   // rAF Render registration
   useEffect(() => {
     const canvas = canvasRef.current;
-    const svg    = svgRef.current;
+    const svg = svgRef.current;
     if (!canvas || !svg || dims.width <= 1 || dims.height <= 1) return;
 
     const ctx = setupCanvas(canvas, dims.width, dims.height, dims.dpr);
@@ -83,9 +83,9 @@ export function LineChart({ config }: LineChartProps): React.JSX.Element {
 
     const renderConfig = {
       ...DEFAULT_LINE_CONFIG,
-      color:       config.color,
+      color: config.color,
       strokeWidth: config.strokeWidth ?? DEFAULT_LINE_CONFIG.strokeWidth,
-      showDots:    config.showDots   ?? DEFAULT_LINE_CONFIG.showDots,
+      showDots: config.showDots ?? DEFAULT_LINE_CONFIG.showDots,
       overrideDomain: customDomain,
     };
 

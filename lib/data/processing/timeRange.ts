@@ -1,5 +1,5 @@
 /**
- * PulseRender — Time Range Processing Filter
+ * PulseRender - Time Range Processing Filter
  *
  * Pure function that selects points falling within the designated duration window
  * from `currentTime` (or the latest timestamp in the dataset if currentTime is omitted).

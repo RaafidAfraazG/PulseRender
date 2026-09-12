@@ -1,4 +1,4 @@
-# PulseRender — Performance Targets & Benchmarking Report
+# PulseRender - Performance Targets & Benchmarking Report
 
 > **Status:** Final Corrective Audit Complete · Submission Ready  
 > **Environment:** Next.js 16 Production Build (Turbopack) · Chrome V8 Engine

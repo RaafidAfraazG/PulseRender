@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — Data Table Container Panel
+ * PulseRender - Data Table Container Panel
  *
  * Wraps VirtualizedTable, connecting it to the DataStore & DerivedDataPipeline.
  * Displays dataset metrics, row count badges, and empty/loading states.
@@ -40,7 +40,7 @@ export function DataTable(): React.JSX.Element {
         aggregation: aggregationMode,
       },
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store, pipeline, storeVersion, ui.timeRange, activeCategories, aggregationMode]);
 
   const handleRenderCountChange = useCallback((count: number) => {

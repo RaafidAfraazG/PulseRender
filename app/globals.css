@@ -1,5 +1,5 @@
 /*
- * PulseRender — Global Design System
+ * PulseRender - Global Design System
  * ===================================
  *
  * This file is the ONLY place design tokens (colors, spacing, typography,
@@ -16,40 +16,40 @@
 
 :root {
   /* Color palette */
-  --hue-brand:    243;   /* Indigo */
-  --hue-cyan:     195;   /* Cyan */
-  --hue-violet:   263;   /* Violet */
-  --hue-emerald:  160;   /* Emerald */
+  --hue-brand:    238;   /* Indigo */
+  --hue-cyan:     199;   /* Sky */
+  --hue-violet:   258;   /* Violet */
+  --hue-emerald:  158;   /* Emerald */
 
   /* Accent colors */
-  --accent-primary:   hsl(var(--hue-brand),   89%, 60%);   /* #6366f1 */
-  --accent-secondary: hsl(var(--hue-cyan),    90%, 54%);   /* #22d3ee */
-  --accent-tertiary:  hsl(var(--hue-violet),  73%, 72%);   /* #a78bfa */
-  --accent-success:   hsl(var(--hue-emerald), 71%, 51%);   /* #34d399 */
-  --accent-warning:   hsl(43,  96%, 56%);
-  --accent-danger:    hsl(0,   84%, 60%);
+  --accent-primary:   #4f46e5;   /* Clean Indigo */
+  --accent-secondary: #0284c7;   /* Clean Sky Blue */
+  --accent-tertiary:  #7c3aed;   /* Clean Violet */
+  --accent-success:   #10b981;   /* Clean Emerald */
+  --accent-warning:   #f59e0b;   /* Amber */
+  --accent-danger:    #ef4444;   /* Soft red */
 
-  /* Background surfaces */
-  --bg-base:          hsl(225, 20%, 6%);     /* #0c0e14 — page background */
-  --bg-elevated:      hsl(225, 18%, 9%);     /* #101420 — elevated surface */
+  /* Background surfaces - Professional White Theme */
+  --bg-base:          #f8fafc;     /* Light slate-gray page background */
+  --bg-elevated:      #ffffff;     /* White container surface */
 
   /* Surface tokens */
-  --surface-card:     hsl(225, 16%, 11%);
-  --surface-glass:    hsl(225, 20%, 8% / 0.85);
-  --surface-overlay:  hsl(225, 20%, 4% / 0.9);
+  --surface-card:     #ffffff;
+  --surface-glass:    rgba(255, 255, 255, 0.95);
+  --surface-overlay:  rgba(15, 23, 42, 0.5);
 
   /* Border tokens */
-  --border-subtle:    hsl(225, 14%, 20%);
-  --border-emphasis:  hsl(225, 14%, 28%);
+  --border-subtle:    #e2e8f0;     /* 1px clean border */
+  --border-emphasis:  #cbd5e1;
 
   /* Text tokens */
-  --text-primary:     hsl(220, 20%, 96%);
-  --text-secondary:   hsl(220, 14%, 78%);
-  --text-tertiary:    hsl(220, 10%, 56%);
-  --text-quaternary:  hsl(220, 8%, 40%);
+  --text-primary:     #0f172a;     /* Dark slate */
+  --text-secondary:   #475569;     /* Slate */
+  --text-tertiary:    #64748b;     /* Muted slate */
+  --text-quaternary:  #94a3b8;
 
   /* Typography */
-  --font-sans:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono:    ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
 
   --text-xs:   0.6875rem;  /* 11px */
@@ -72,12 +72,12 @@
   --space-12: 3rem;
   --space-16: 4rem;
 
-  /* Border radii */
+  /* Border radii - Restrained, technical radius */
   --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
-  --radius-2xl:  24px;
+  --radius-md:   6px;
+  --radius-lg:   8px;
+  --radius-xl:   12px;
+  --radius-2xl:  16px;
   --radius-full: 9999px;
 
   /* Z-index scale */
@@ -89,7 +89,7 @@
   --z-toast:   400;
 
   /* Layout */
-  --header-height:  60px;
+  --header-height:  56px;
   --sidebar-width:  260px;
   --panel-gap:      var(--space-4);
 }
@@ -154,7 +154,7 @@ code, pre {
   font-size: 0.875em;
 }
 
-/* Focus ring — accessible, non-obtrusive */
+/* Focus ring - accessible, non-obtrusive */
 :focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;

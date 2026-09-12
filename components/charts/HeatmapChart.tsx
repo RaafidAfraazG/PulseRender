@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — HeatmapChart Component
+ * PulseRender - HeatmapChart Component
  *
  * Renders category × time-bucket 2D grid heatmap using Canvas, driven by shared rAF.
  * Consumes derived filtered/aggregated data across active categories.
@@ -30,19 +30,19 @@ interface HeatmapChartProps {
 }
 
 export function HeatmapChart({ config }: HeatmapChartProps): React.JSX.Element {
-  const store        = useDataStore();
+  const store = useDataStore();
   const { ui, activeCategories, aggregationMode, customDomain, setCustomDomain } = useDashboard();
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef    = useRef<HTMLCanvasElement>(null);
-  const svgRef       = useRef<SVGSVGElement>(null);
-  const size         = useResizeObserver(containerRef);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const size = useResizeObserver(containerRef);
 
-  const pipeline     = useMemo(() => new DerivedDataPipeline(), []);
+  const pipeline = useMemo(() => new DerivedDataPipeline(), []);
 
   const dims = useMemo<ChartDimensions>(() => ({
-    width:   Math.max(1, size.width),
-    height:  Math.max(1, size.height),
-    dpr:     typeof window !== 'undefined' ? (window.devicePixelRatio || 1) : 1,
+    width: Math.max(1, size.width),
+    height: Math.max(1, size.height),
+    dpr: typeof window !== 'undefined' ? (window.devicePixelRatio || 1) : 1,
     padding: DEFAULT_PADDING,
   }), [size.width, size.height]);
 
@@ -74,7 +74,7 @@ export function HeatmapChart({ config }: HeatmapChartProps): React.JSX.Element {
   // rAF Render registration
   useEffect(() => {
     const canvas = canvasRef.current;
-    const svg    = svgRef.current;
+    const svg = svgRef.current;
     if (!canvas || !svg || dims.width <= 1 || dims.height <= 1) return;
 
     const ctx = setupCanvas(canvas, dims.width, dims.height, dims.dpr);

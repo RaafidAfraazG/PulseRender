@@ -1,8 +1,8 @@
 /**
- * PulseRender — State Layer Interfaces
+ * PulseRender - State Layer Interfaces
  *
  * These interfaces define the SHAPE of each state domain.
- * They are NOT implementations — no providers, reducers, or stores here.
+ * They are NOT implementations - no providers, reducers, or stores here.
  *
  * The separation exists so Phase 2+ can pick an implementation strategy
  * (React Context, Zustand, signals, etc.) without changing the type contract.
@@ -24,7 +24,7 @@ import type {
 
 /**
  * Holds the latest batch of unprocessed data points arriving from the stream.
- * This state must NEVER be directly consumed by renderers — it flows through
+ * This state must NEVER be directly consumed by renderers - it flows through
  * the processing pipeline first.
  *
  * Phase 2+ responsibility: data stream hook / worker message handler.
@@ -70,7 +70,7 @@ export interface DerivedDataState {
 
 /**
  * All user-controlled interface state.
- * This state is ephemeral — it does not need to survive page reload.
+ * This state is ephemeral - it does not need to survive page reload.
  *
  * Phase 1: Defined here. Minimal provider established.
  * Phase 3+: Full implementation with zoom/pan/filter controls.

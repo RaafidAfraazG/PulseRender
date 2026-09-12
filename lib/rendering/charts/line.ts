@@ -1,11 +1,11 @@
 /**
- * PulseRender — Line Chart Canvas Renderer
+ * PulseRender - Line Chart Canvas Renderer
  *
  * Draws a continuous polyline through DataPoints ordered by timestamp.
  * Optionally fills the area beneath the line and renders dot markers.
  *
  * Runs inside the shared rAF loop. Must not allocate large objects or
- * perform expensive computations — the rAF budget is ~16 ms total for
+ * perform expensive computations - the rAF budget is ~16 ms total for
  * all four charts.
  */
 
@@ -22,30 +22,30 @@ import { clearCanvas, clipToArea } from '../canvas';
 // ── Config ────────────────────────────────────────────────────────────────
 
 export interface LineChartRenderConfig {
-  readonly color:          string;
-  readonly strokeWidth:    number;
-  readonly showDots:       boolean;
-  readonly dotRadius:      number;
-  readonly fillColor:      string;   // empty string = no area fill
-  readonly yDomain:        readonly [number, number];
+  readonly color: string;
+  readonly strokeWidth: number;
+  readonly showDots: boolean;
+  readonly dotRadius: number;
+  readonly fillColor: string;   // empty string = no area fill
+  readonly yDomain: readonly [number, number];
   readonly overrideDomain?: ViewportDomain | null;
 }
 
 export const DEFAULT_LINE_CONFIG: LineChartRenderConfig = {
-  color:       '#6366f1',
+  color: '#6366f1',
   strokeWidth: 2,
-  showDots:    false,
-  dotRadius:   3,
-  fillColor:   'rgba(99,102,241,0.10)',
-  yDomain:     [0, 100],
+  showDots: false,
+  dotRadius: 3,
+  fillColor: 'rgba(99,102,241,0.10)',
+  yDomain: [0, 100],
 };
 
 // ── Renderer ──────────────────────────────────────────────────────────────
 
 export function renderLineChart(
-  ctx:    CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D,
   points: readonly { timestamp: number; value: number }[],
-  dims:   ChartDimensions,
+  dims: ChartDimensions,
   config: LineChartRenderConfig,
 ): void {
   clearCanvas(ctx, dims);
@@ -96,7 +96,7 @@ export function renderLineChart(
   }
 
   const first = visible[0];
-  const last  = visible[visible.length - 1];
+  const last = visible[visible.length - 1];
 
   // ── Area fill ───────────────────────────────────────────────────────────
   if (config.fillColor) {
@@ -124,16 +124,16 @@ export function renderLineChart(
   // ── Line stroke ─────────────────────────────────────────────────────────
   ctx.beginPath();
   ctx.strokeStyle = config.color;
-  ctx.lineWidth   = config.strokeWidth;
-  ctx.lineJoin    = 'round';
-  ctx.lineCap     = 'round';
+  ctx.lineWidth = config.strokeWidth;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
 
   for (let i = 0; i < visible.length; i++) {
     const pt = visible[i];
     const sx = dataToScreenX(pt.timestamp, bounds, area);
-    const sy = dataToScreenY(pt.value,     bounds, area);
+    const sy = dataToScreenY(pt.value, bounds, area);
     if (i === 0) { ctx.moveTo(sx, sy); }
-    else         { ctx.lineTo(sx, sy); }
+    else { ctx.lineTo(sx, sy); }
   }
   ctx.stroke();
 
@@ -145,7 +145,7 @@ export function renderLineChart(
       ctx.beginPath();
       ctx.arc(
         dataToScreenX(pt.timestamp, bounds, area),
-        dataToScreenY(pt.value,     bounds, area),
+        dataToScreenY(pt.value, bounds, area),
         config.dotRadius, 0, Math.PI * 2,
       );
       ctx.fill();

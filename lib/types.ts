@@ -1,5 +1,5 @@
 /**
- * PulseRender — Core Domain Types
+ * PulseRender - Core Domain Types
  *
  * This file is the single source of truth for all foundational domain types.
  * Business logic and rendering logic import from here, not from each other.
@@ -14,11 +14,11 @@
 /**
  * A single raw data point produced by the data source.
  *
- * `id`        — stable identity (useful for keyed rendering)
- * `timestamp` — Unix epoch milliseconds
- * `value`     — the primary numeric measurement
- * `category`  — logical grouping / series identifier
- * `metadata`  — optional bag of additional properties (sensor id, region, etc.)
+ * `id`        - stable identity (useful for keyed rendering)
+ * `timestamp` - Unix epoch milliseconds
+ * `value`     - the primary numeric measurement
+ * `category`  - logical grouping / series identifier
+ * `metadata`  - optional bag of additional properties (sensor id, region, etc.)
  */
 export interface DataPoint {
   readonly id: string;
@@ -137,11 +137,11 @@ export interface TimeRange {
 
 /** All supported time range presets, ordered from shortest to longest */
 export const TIME_RANGES: Readonly<Record<TimeRangePreset, TimeRange>> = {
-  '1m':  { preset: '1m',  label: '1 minute',   durationMs: 60_000 },
-  '5m':  { preset: '5m',  label: '5 minutes',  durationMs: 300_000 },
+  '1m': { preset: '1m', label: '1 minute', durationMs: 60_000 },
+  '5m': { preset: '5m', label: '5 minutes', durationMs: 300_000 },
   '15m': { preset: '15m', label: '15 minutes', durationMs: 900_000 },
-  '1h':  { preset: '1h',  label: '1 hour',     durationMs: 3_600_000 },
-  'all': { preset: 'all', label: 'All data',   durationMs: Infinity },
+  '1h': { preset: '1h', label: '1 hour', durationMs: 3_600_000 },
+  'all': { preset: 'all', label: 'All data', durationMs: Infinity },
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -224,5 +224,5 @@ export interface DashboardConfig {
  * Ensures consistent success/error handling across all routes.
  */
 export type ApiResponse<T> =
-  | { readonly success: true;  readonly data: T;      readonly timestamp: number }
+  | { readonly success: true; readonly data: T; readonly timestamp: number }
   | { readonly success: false; readonly error: string; readonly timestamp: number };

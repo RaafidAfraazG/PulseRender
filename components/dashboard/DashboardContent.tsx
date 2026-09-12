@@ -1,11 +1,10 @@
 'use client';
 
 /**
- * PulseRender — Dashboard Main Content Layout
+ * PulseRender - Dashboard Main Content Layout
  *
- * Client Component inside DashboardProvider & DataStreamProvider.
- * Composes analytical controls, stress testing, live charts, virtualized data table,
- * and performance monitor overlay.
+ * Enterprise data visualization dashboard layout composing system summary, controls,
+ * stress test triggers, real-time Canvas charts, virtualized data grid, and performance monitor.
  */
 
 import { DashboardHeader } from '@/components/ui/DashboardHeader';
@@ -28,64 +27,59 @@ export function DashboardContent({ config }: DashboardContentProps): React.JSX.E
 
   return (
     <div className={styles.page}>
-      {/* ── Header ──────────────────────────────────────────────── */}
+      {/* ── Application Header ────────────────────────────────────────────── */}
       <DashboardHeader
         title={config.title}
         subtitle={config.subtitle}
-        currentPhase={5}
       />
 
-      {/* ── Main content ────────────────────────────────────────── */}
+      {/* ── Main Dashboard Workspace ──────────────────────────────────────── */}
       <main className={styles.main} id="main-content">
 
-        {/* ── Phase banner ────────────────────────────────────── */}
-        <section className={styles.phaseBanner} aria-label="Phase status">
-          <div className={styles.phaseBannerInner}>
-            <div className={styles.phaseBannerIcon} aria-hidden="true">📋</div>
-            <div className={styles.phaseBannerText}>
-              <strong>Phase 5 — Virtualized Data Table &amp; Dashboard Completeness</strong>
-              <span>
-                Full interactive dashboard active. Custom virtual scrolling table browsing up to 100,000 rows with
-                bounded DOM footprint (~30–50 mounted rows).
-              </span>
+        {/* ── System Overview Bar ──────────────────────────────────────────── */}
+        <section className={styles.summaryBar} aria-label="System overview">
+          <div className={styles.summaryInner}>
+            <div className={styles.summaryText}>
+              <strong>Real-Time Analytics Engine</strong>
+              <span>Continuously ingesting, processing, and rendering high-frequency metric streams at 60 FPS.</span>
             </div>
             <StreamStatus />
-            <div className={styles.phaseBannerStats}>
-              <Stat label="Target FPS"    value="60"     />
-              <Stat label="Data Table"    value="Virtual"/>
-              <Stat label="DOM Footprint" value="Bounded"/>
-              <Stat label="Interactions"  value="Complete"/>
+            <div className={styles.summaryStats}>
+              <Stat label="Target Frame Rate" value="60 FPS" />
+              <Stat label="Rendering Surface" value="Canvas 2D" />
+              <Stat label="Table Engine" value="Virtualized" />
+              <Stat label="Data Pipeline" value="Zero-Copy" />
             </div>
           </div>
         </section>
 
-        {/* ── Analytical Controls (Phase 3) ────────────────────── */}
+        {/* ── Dashboard Controls ──────────────────────────────────────────── */}
         <DashboardControls />
 
-        {/* ── Stress Test Controls (Phase 4) ──────────────────── */}
+        {/* ── Stress Test Workloads ────────────────────────────────────────── */}
         <StressTestControls />
 
-        {/* ── Live Chart Grid (Phase 2+3+4) ───────────────────── */}
+        {/* ── Visualization Charts Grid ───────────────────────────────────── */}
         <ChartGrid charts={config.charts} />
 
-        {/* ── Virtualized Data Table (Phase 5) ────────────────── */}
+        {/* ── Virtualized Data Grid Table ────────────────────────────────── */}
         <DataTable />
 
       </main>
 
-      {/* ── Performance Monitor Overlay (Phase 4) ──────────────── */}
+      {/* ── Performance Monitor Overlay Panel ─────────────────────────────── */}
       {ui.showPerformanceMonitor && (
         <PerformanceMonitor onClose={togglePerformanceMonitor} />
       )}
 
-      {/* ── Footer ──────────────────────────────────────────────── */}
+      {/* ── Footer ────────────────────────────────────────────────────────── */}
       <footer className={styles.footer}>
-        <span>PulseRender — Phase 5 Dashboard Completeness</span>
+        <span>PulseRender Data Platform</span>
         <span className={styles.footerSep} aria-hidden="true">·</span>
-        <span>Next.js {process.env.npm_package_dependencies_next ?? '16'} · React · Canvas API</span>
+        <span>Next.js · React · Canvas API</span>
         <span className={styles.footerSep} aria-hidden="true">·</span>
         <a href="/api/data" target="_blank" rel="noreferrer" className={styles.footerLink}>
-          Live SSE Stream ↗
+          Live SSE Feed ↗
         </a>
       </footer>
     </div>

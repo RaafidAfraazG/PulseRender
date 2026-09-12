@@ -9,7 +9,7 @@
 
 PulseRender is an enterprise-grade real-time data visualization dashboard designed to continuously ingest, process, and render **10,000+ data points at 60 FPS** while maintaining sub-2ms interaction response latency and zero memory leaks.
 
-Built with a clean architectural separation between data ingestion, analytical processing, Canvas rendering, and React UI orchestration, PulseRender avoids standard browser DOM bottlenecks by keeping React responsible for UI state — not for per-frame pixel drawing.
+Built with a clean architectural separation between data ingestion, analytical processing, Canvas rendering, and React UI orchestration, PulseRender avoids standard browser DOM bottlenecks by keeping React responsible for UI state - not for per-frame pixel drawing.
 
 ---
 
@@ -217,4 +217,4 @@ npm run build
 
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.

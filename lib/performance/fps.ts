@@ -1,5 +1,5 @@
 /**
- * PulseRender — Real FPS & Frame-Time Calculator
+ * PulseRender - Real FPS & Frame-Time Calculator
  *
  * Measures actual frame duration and rate via requestAnimationFrame timestamp deltas.
  * Uses a rolling 60-frame buffer to provide stable, real-time statistics.

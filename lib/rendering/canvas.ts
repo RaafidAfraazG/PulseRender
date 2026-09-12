@@ -1,5 +1,5 @@
 /**
- * PulseRender — Canvas Setup & Utilities
+ * PulseRender - Canvas Setup & Utilities
  *
  * Handles the low-level canvas lifecycle:
  *   • Sizing the canvas at the correct device pixel ratio (no blur on HiDPI)
@@ -20,10 +20,10 @@
  *
  * ── Frame lifecycle ──────────────────────────────────────────────────────
  *
- *   1. setupCanvas()  — once per dimension change
- *   2. clearCanvas()  — start of every rAF frame
+ *   1. setupCanvas()  - once per dimension change
+ *   2. clearCanvas()  - start of every rAF frame
  *   3. (draw calls)
- *   4. clipToArea() / ctx.restore()  — within a single frame as needed
+ *   4. clipToArea() / ctx.restore()  - within a single frame as needed
  */
 
 import type { ChartDimensions, ChartArea } from './types';
@@ -36,20 +36,20 @@ import type { ChartDimensions, ChartArea } from './types';
  */
 export function setupCanvas(
   canvas: HTMLCanvasElement,
-  width:  number,
+  width: number,
   height: number,
-  dpr:    number,
+  dpr: number,
 ): CanvasRenderingContext2D | null {
-  const physW = Math.round(width  * dpr);
+  const physW = Math.round(width * dpr);
   const physH = Math.round(height * dpr);
 
-  // Avoid redundant resets — changing canvas.width clears the context
+  // Avoid redundant resets - changing canvas.width clears the context
   if (canvas.width !== physW || canvas.height !== physH) {
-    canvas.width  = physW;
+    canvas.width = physW;
     canvas.height = physH;
   }
 
-  canvas.style.width  = `${width}px`;
+  canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
 
   const ctx = canvas.getContext('2d');
@@ -66,7 +66,7 @@ export function setupCanvas(
  * Also resets the DPR transform in case it was modified.
  */
 export function clearCanvas(
-  ctx:  CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D,
   dims: ChartDimensions,
 ): void {
   ctx.setTransform(dims.dpr, 0, 0, dims.dpr, 0, 0);
@@ -80,7 +80,7 @@ export function clearCanvas(
  * ⚠ Caller MUST call ctx.restore() when finished drawing within the clip.
  */
 export function clipToArea(
-  ctx:  CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D,
   area: ChartArea,
 ): void {
   ctx.save();

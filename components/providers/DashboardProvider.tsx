@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — Dashboard UI Context Provider
+ * PulseRender - Dashboard UI Context Provider
  *
  * PHASE 3: Expanded provider handling:
  *   - Time range selection ('1m', '5m', '15m', '1h', 'all')

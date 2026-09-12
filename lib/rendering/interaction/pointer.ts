@@ -1,5 +1,5 @@
 /**
- * PulseRender — Reusable Pointer Event Handler
+ * PulseRender - Reusable Pointer Event Handler
  *
  * Attaches pointer listeners (drag to pan, wheel to zoom) to a chart surface element.
  * Supports desktop mouse & touch events via unified PointerEvents API.

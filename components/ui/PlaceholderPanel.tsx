@@ -1,8 +1,8 @@
 /**
- * PulseRender — Placeholder Panel (Server Component)
+ * PulseRender - Placeholder Panel (Server Component)
  *
  * Displays a clearly labelled placeholder panel for chart/feature areas
- * that will be implemented in later phases. Renders as a server component —
+ * that will be implemented in later phases. Renders as a server component -
  * no interactivity needed in Phase 1.
  */
 
@@ -32,7 +32,7 @@ export function PlaceholderPanel({
     <div
       className={`${styles.panel} ${className ?? ''}`}
       role="region"
-      aria-label={`${title} — placeholder`}
+      aria-label={`${title} - placeholder`}
     >
       <div className={styles.inner}>
         <div className={styles.iconWrapper} aria-hidden="true">

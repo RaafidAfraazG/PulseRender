@@ -1,11 +1,11 @@
 /**
- * PulseRender — Dashboard Layout
+ * PulseRender - Dashboard Layout
  *
  * Server Component layout wrapping all /dashboard/* routes.
  * Injects the DashboardProvider (client boundary) here so that all
  * dashboard pages share the same UI state context.
  *
- * This is the correct place to insert the client boundary — not in page.tsx,
+ * This is the correct place to insert the client boundary - not in page.tsx,
  * and definitely not in the root layout (which would unnecessarily force all
  * routes into client rendering).
  */

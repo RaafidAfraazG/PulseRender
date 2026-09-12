@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * PulseRender — useResizeObserver
+ * PulseRender - useResizeObserver
  *
  * Tracks the CSS pixel dimensions of a DOM element using the ResizeObserver API.
  * Returns { width: 0, height: 0 } until the element is mounted and has size.
@@ -16,7 +16,7 @@
 import { useState, useEffect, useRef, type RefObject } from 'react';
 
 export interface ElementSize {
-  readonly width:  number;
+  readonly width: number;
   readonly height: number;
 }
 
@@ -39,7 +39,7 @@ export function useResizeObserver(
       const entry = entries[0];
       if (!entry) return;
       const { width, height } = entry.contentRect;
-      // Floor to integers — sub-pixel dimensions cause canvas thrashing
+      // Floor to integers - sub-pixel dimensions cause canvas thrashing
       setSize({ width: Math.floor(width), height: Math.floor(height) });
     });
 
