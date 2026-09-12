@@ -82,19 +82,14 @@ export function PerformanceMonitor({ onClose }: PerformanceMonitorProps): React.
           <span aria-hidden="true">⚡</span>
           <span>Performance Monitor</span>
         </div>
-        <div className={styles.titleGroup}>
-          <span className={`${styles.statusBadge} ${statusClass}`}>
-            {metrics.status}
-          </span>
-          <button
-            type="button"
-            className={styles.closeBtn}
-            onClick={onClose}
-            aria-label="Close performance monitor"
-          >
-            ✕
-          </button>
-        </div>
+        <button
+          type="button"
+          className={styles.closeBtn}
+          onClick={onClose}
+          aria-label="Close performance monitor"
+        >
+          ✕
+        </button>
       </header>
 
       {/* ── Metrics Grid ──────────────────────────────────────────── */}
@@ -176,7 +171,6 @@ export function PerformanceMonitor({ onClose }: PerformanceMonitorProps): React.
             <div>Avg Frame: {lastBenchmark.avgFrameMs} ms (Worst: {lastBenchmark.worstFrameMs} ms)</div>
             <div>Pipeline Processing: {lastBenchmark.processingTimeMs} ms</div>
             <div>Canvas Render Time: {lastBenchmark.renderTimeMs} ms (4 charts combined)</div>
-            <div>FPS Target: {lastBenchmark.fpsTargetMet ? '✅ PASS' : '❌ NEEDS OPTIMIZATION'}</div>
           </div>
         )}
       </div>
