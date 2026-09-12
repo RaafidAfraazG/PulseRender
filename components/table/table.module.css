@@ -1,0 +1,128 @@
+.tablePanel {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-ground);
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.titleIcon {
+  font-size: var(--text-lg);
+}
+
+.titleText {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.badgeGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.countBadge {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--surface-card);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+}
+
+.renderedBadge {
+  color: var(--accent-secondary);
+  font-weight: 700;
+}
+
+.scrollViewport {
+  height: 380px;
+  overflow-y: auto;
+  position: relative;
+  contain: strict;
+  will-change: transform;
+}
+
+.tableElement {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--text-xs);
+  table-layout: fixed;
+}
+
+.tableHeaderRow {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #11131b;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.th {
+  padding: var(--space-3) var(--space-4);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.td {
+  padding: 0 var(--space-4);
+  height: 36px;
+  line-height: 36px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tr {
+  height: 36px;
+  transition: background 100ms ease;
+}
+
+.tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.categoryDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.emptyState {
+  padding: var(--space-8);
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: var(--text-sm);
+}

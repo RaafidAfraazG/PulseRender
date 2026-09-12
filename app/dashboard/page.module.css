@@ -1,0 +1,226 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+/* ── Main layout ─────────────────────────────────────────────────────── */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-6) var(--space-8);
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Phase banner ────────────────────────────────────────────────────── */
+
+.phaseBanner {
+  border-radius: var(--radius-xl);
+  background: linear-gradient(
+    135deg,
+    hsl(from var(--accent-primary) h s l / 0.08) 0%,
+    hsl(from var(--accent-secondary) h s l / 0.05) 100%
+  );
+  border: 1px solid hsl(from var(--accent-primary) h s l / 0.2);
+  overflow: hidden;
+  position: relative;
+}
+
+.phaseBanner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-tertiary)
+  );
+}
+
+.phaseBannerInner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  flex-wrap: wrap;
+}
+
+.phaseBannerIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.phaseBannerText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+  min-width: 200px;
+}
+
+.phaseBannerText strong {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.phaseBannerText span {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+/* ── Stats row ───────────────────────────────────────────────────────── */
+
+.phaseBannerStats {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.statValue {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLabel {
+  font-size: var(--text-xs);
+  color: var(--text-quaternary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* ── Controls ────────────────────────────────────────────────────────── */
+
+.controlsSection {
+  /* intentionally no extra styling — panel provides its own */
+}
+
+.controlsPanel {
+  min-height: 80px !important;
+}
+
+.controlsPanel .inner {
+  flex-direction: row !important;
+  min-height: 80px !important;
+  padding: var(--space-4) var(--space-6) !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+/* ── Chart grid ──────────────────────────────────────────────────────── */
+
+.chartGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--panel-gap);
+}
+
+/* ── Data table ──────────────────────────────────────────────────────── */
+
+.tableSection {
+  /* no extra wrapper styles needed */
+}
+
+.tablePanel {
+  min-height: 180px;
+}
+
+/* ── Performance monitor ─────────────────────────────────────────────── */
+
+.performanceSection {
+  /* no extra wrapper styles needed */
+}
+
+.performancePanel {
+  min-height: 120px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--text-xs);
+  color: var(--text-quaternary);
+}
+
+.footerSep {
+  opacity: 0.4;
+}
+
+.footerLink {
+  color: var(--text-tertiary);
+  transition: color 150ms ease;
+}
+
+.footerLink:hover {
+  color: var(--accent-primary);
+}
+
+/* ── Responsive breakpoints ──────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .chartGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .phaseBannerStats {
+    gap: var(--space-4);
+  }
+
+  .main {
+    padding: var(--space-4);
+  }
+}
+
+@media (max-width: 600px) {
+  .phaseBannerInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .phaseBannerStats {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: var(--space-1);
+    text-align: center;
+  }
+
+  .footerSep {
+    display: none;
+  }
+}

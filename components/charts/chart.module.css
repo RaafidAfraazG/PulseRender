@@ -1,0 +1,119 @@
+/**
+ * PulseRender — Shared Chart Styles
+ *
+ * Shared CSS module used by all four chart components.
+ * The outer wrapper sets position:relative so the canvas and SVG layers
+ * can be absolutely stacked on top of each other.
+ */
+
+/* ── Outer wrapper ──────────────────────────────────────────────────────── */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 280px;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.panel:hover {
+  border-color: var(--border-focus);
+}
+
+/* ── Chart header ───────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 0.5rem;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent-primary-faint);
+  color: var(--accent-primary);
+}
+
+.liveDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1;    transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ── Canvas + SVG surface ───────────────────────────────────────────────── */
+
+.surface {
+  position: relative;
+  flex: 1;
+  min-height: 0;         /* allow flex child to shrink below content size */
+  overflow: hidden;
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;        /* remove inline baseline gap */
+}
+
+.svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;  /* SVG labels should not intercept mouse events */
+  overflow: visible;
+}
+
+/* ── Empty / loading state ──────────────────────────────────────────────── */
+
+.empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  pointer-events: none;
+}
+
+/* ── Heatmap category labels ────────────────────────────────────────────── */
+
+.heatmapLabels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

@@ -1,0 +1,201 @@
+/*
+ * PulseRender — Global Design System
+ * ===================================
+ *
+ * This file is the ONLY place design tokens (colors, spacing, typography,
+ * radii, z-indices) are defined. All components reference these variables.
+ *
+ * Structure:
+ *   1. CSS Custom Properties (design tokens)
+ *   2. CSS Reset & Base Styles
+ *   3. Utility classes (minimal)
+ *   4. Scrollbar styling
+ */
+
+/* ── 1. Design Tokens ───────────────────────────────────────────────────── */
+
+:root {
+  /* Color palette */
+  --hue-brand:    243;   /* Indigo */
+  --hue-cyan:     195;   /* Cyan */
+  --hue-violet:   263;   /* Violet */
+  --hue-emerald:  160;   /* Emerald */
+
+  /* Accent colors */
+  --accent-primary:   hsl(var(--hue-brand),   89%, 60%);   /* #6366f1 */
+  --accent-secondary: hsl(var(--hue-cyan),    90%, 54%);   /* #22d3ee */
+  --accent-tertiary:  hsl(var(--hue-violet),  73%, 72%);   /* #a78bfa */
+  --accent-success:   hsl(var(--hue-emerald), 71%, 51%);   /* #34d399 */
+  --accent-warning:   hsl(43,  96%, 56%);
+  --accent-danger:    hsl(0,   84%, 60%);
+
+  /* Background surfaces */
+  --bg-base:          hsl(225, 20%, 6%);     /* #0c0e14 — page background */
+  --bg-elevated:      hsl(225, 18%, 9%);     /* #101420 — elevated surface */
+
+  /* Surface tokens */
+  --surface-card:     hsl(225, 16%, 11%);
+  --surface-glass:    hsl(225, 20%, 8% / 0.85);
+  --surface-overlay:  hsl(225, 20%, 4% / 0.9);
+
+  /* Border tokens */
+  --border-subtle:    hsl(225, 14%, 20%);
+  --border-emphasis:  hsl(225, 14%, 28%);
+
+  /* Text tokens */
+  --text-primary:     hsl(220, 20%, 96%);
+  --text-secondary:   hsl(220, 14%, 78%);
+  --text-tertiary:    hsl(220, 10%, 56%);
+  --text-quaternary:  hsl(220, 8%, 40%);
+
+  /* Typography */
+  --font-sans:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+
+  --text-xs:   0.6875rem;  /* 11px */
+  --text-sm:   0.8125rem;  /* 13px */
+  --text-base: 0.9375rem;  /* 15px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.375rem;   /* 22px */
+  --text-2xl:  1.75rem;    /* 28px */
+  --text-3xl:  2.25rem;    /* 36px */
+
+  /* Spacing (4px grid) */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Border radii */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* Z-index scale */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-overlay: 100;
+  --z-header:  200;
+  --z-modal:   300;
+  --z-toast:   400;
+
+  /* Layout */
+  --header-height:  60px;
+  --sidebar-width:  260px;
+  --panel-gap:      var(--space-4);
+}
+
+/* ── 2. CSS Reset & Base ────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 2;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Heading hierarchy reset */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+img, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* Focus ring — accessible, non-obtrusive */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remove focus ring for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── 3. Utility Classes ─────────────────────────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── 4. Scrollbar styling ───────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-emphasis);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-quaternary);
+}
