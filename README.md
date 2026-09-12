@@ -54,6 +54,38 @@ Built with a clean architectural separation between data ingestion, analytical p
 
 ---
 
+## How to Use the Dashboard (User Guide)
+
+### 1. Real-Time Streaming & Incremental Buffer Expansion
+- **Automatic Live Ingestion**: On page load, the dashboard automatically starts ingesting real-time metric streams at 100 points/second.
+- **10K Baseline Target**: The stream fills up to **10,240 points** (the baseline 60 FPS target workload) and maintains a smooth sliding window by automatically evicting oldest data.
+- **Incremental Expansion**: Once the live stream reaches 10,240 points, an inline button **`Expand to 20K →`** appears next to `Buffered Points`.
+  - Click **`Expand to 20K →`** to expand the live stream capacity to 20,000 points.
+  - As data streams in, the button steps up to **`Expand to 30K →`**, **`Expand to 50K →`**, and **`Expand to 100K →`**.
+- **Resetting Buffer**: Click **`↺ 10K`** (red badge) at any time to instantly reset the stream back to the 10,240 baseline target.
+
+### 2. Interactive Chart Navigation (Zooming & Panning)
+- **Mouse Wheel Zoom**: Hover over any Canvas chart (`Line`, `Bar`, `Scatter`, `Heatmap`) and scroll your mouse wheel or pinch trackpad to zoom in/out on temporal regions.
+- **Click & Drag Pan**: Click and drag horizontally across any chart surface to shift the active viewing window across time.
+- **Resume Live Stream**: Zooming or panning pauses automatic viewport scrolling. Click the **`▶ Resume Live`** button (located on any chart header badge or on the top controls panel) to instantly restore real-time auto-scrolling.
+
+### 3. Analytical Filters & Time Window Aggregation
+- **Time Range Windows**: Click `1m`, `5m`, `15m`, `1h`, or `All` in the top controls bar to filter the temporal scope of all 4 charts and the data table.
+- **Time-Bucket Aggregation**: Switch between `Raw`, `1m`, `5m`, and `1h` to group raw streaming points into aggregated averages.
+- **Category Toggles**: Click `Alpha`, `Beta`, `Gamma`, or `Delta` chips to toggle individual data series on/off dynamically.
+- **Reset View**: Click the **`↺ Reset View`** button in the controls panel to clear all custom zooms, pans, and filter overlays.
+
+### 4. Virtualized Large Data Table
+- Scroll through the data table below the charts to inspect logical data points (up to 100,000+ rows).
+- Features fixed 36px row height with overscan windowing, maintaining a lightweight ~26 mounted DOM `<tr>` element footprint regardless of total dataset size.
+
+### 5. Live Performance Profiler & Benchmarking
+- **Live Performance Panel**: Click the **`⚡ Performance`** button in the top-right header to open the live telemetry overlay (FPS, Frame Time, Processing Time, Canvas Render Time, Data Points, and Heap Memory).
+- **Stress Test Workloads**: Click `10K`, `25K`, `50K`, or `100K` in the stress test controls bar to benchmark fixed synthetic workloads.
+- **Automated Benchmark Runner**: Inside the Performance Monitor overlay, click **`▶ Run 5s Benchmark Suite`** to measure 5-second average rendering performance.
+
+---
+
 ## Architecture Overview
 
 ```
