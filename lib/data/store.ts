@@ -35,6 +35,7 @@ export class DataStore {
   private totalStoredCount = 0;
   private totalReceivedCount = 0;
   private version = 0;
+  private isStressTesting = false;
   private readonly subscribers = new Set<() => void>();
 
   constructor(maxTotalSize: number, categoryCount: number) {
@@ -45,7 +46,7 @@ export class DataStore {
   // ── Write ───────────────────────────────────────────────────────────────
 
   push(points: readonly DataPoint[]): void {
-    if (points.length === 0) return;
+    if (points.length === 0 || this.isStressTesting) return;
     this.version++;
     for (const point of points) {
       let buf = this.buffers.get(point.category);
@@ -76,6 +77,7 @@ export class DataStore {
    * Populates the store with a fixed target count of synthetic points for stress testing.
    */
   loadStressTest(targetCount: number): void {
+    this.isStressTesting = true;
     this.buffers.clear();
     this.totalStoredCount = 0;
     this.version++;
@@ -107,6 +109,7 @@ export class DataStore {
 
   /** Clears stress test dataset. */
   clearStressTest(): void {
+    this.isStressTesting = false;
     this.buffers.clear();
     this.totalStoredCount = 0;
     this.version++;

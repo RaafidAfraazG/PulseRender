@@ -72,31 +72,37 @@ export function renderScatterPlot(
   const clipMaxX = bounds.xMax + marginMs;
 
   type ScatterItem = { timestamp: number; value: number; category: string };
-  const byCategory = new Map<string, ScatterItem[]>();
+  const byCategory: Record<string, ScatterItem[]> = {
+    primary: [],
+    secondary: [],
+    tertiary: [],
+    quaternary: [],
+  };
+
   for (let i = 0; i < points.length; i++) {
     const pt = points[i];
     if (pt.timestamp >= clipMinX && pt.timestamp <= clipMaxX) {
-      let arr = byCategory.get(pt.category);
-      if (!arr) {
-        arr = [];
-        byCategory.set(pt.category, arr);
+      if (byCategory[pt.category]) {
+        byCategory[pt.category].push(pt);
+      } else {
+        byCategory[pt.category] = [pt];
       }
-      arr.push(pt);
     }
   }
 
   const r = config.pointRadius;
 
-  for (const [cat, catPoints] of byCategory) {
+  for (const cat in byCategory) {
+    const catPoints = byCategory[cat];
+    if (catPoints.length === 0) continue;
     const color = config.categoryColors[cat] ?? '#888888';
     ctx.fillStyle = color;
     ctx.beginPath();
-    for (const pt of catPoints) {
+    for (let i = 0; i < catPoints.length; i++) {
+      const pt = catPoints[i];
       const sx = dataToScreenX(pt.timestamp, bounds, area);
       const sy = dataToScreenY(pt.value, bounds, area);
-      // Build a single sub-path per category
-      ctx.moveTo(sx + r, sy);
-      ctx.arc(sx, sy, r, 0, Math.PI * 2);
+      ctx.rect(sx - r, sy - r, r * 2, r * 2);
     }
     ctx.fill();
   }
