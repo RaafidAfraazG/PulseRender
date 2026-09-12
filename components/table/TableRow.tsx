@@ -56,7 +56,7 @@ export function TableRow({ point }: TableRowProps): React.JSX.Element {
         />
         <span>{label}</span>
       </td>
-      <td className={styles.td} style={{ color: '#f3f4f6', fontWeight: 600 }}>
+      <td className={styles.td} style={{ color: '#0f172a', fontWeight: 600 }}>
         {valStr}
       </td>
       <td className={styles.td} style={{ color: 'var(--text-tertiary)' }}>

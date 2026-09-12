@@ -17,23 +17,22 @@
   gap: var(--space-3);
 }
 
-.logoMark {
-  position: relative;
-  width: 24px;
-  height: 24px;
+.logoContainer {
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 180ms ease;
 }
 
-.logoPulse {
+.logoContainer:hover {
+  transform: scale(1.05);
+}
+
+.logoSvg {
   display: block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent-primary);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
 }
 
 .brandText {
@@ -43,12 +42,41 @@
 }
 
 .title {
-  font-size: var(--text-base);
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
   margin: 0;
   line-height: 1.2;
+  font-size: 1.1875rem;
+}
+
+.titlePulse {
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.035em;
+}
+
+.titleRender {
+  font-weight: 800;
+  background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.035em;
+}
+
+.brandTag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #4f46e5;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  padding: 1.5px 6px;
+  border-radius: 5px;
+  margin-left: 8px;
+  align-self: center;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
 }
 
 .subtitle {

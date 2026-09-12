@@ -2,10 +2,13 @@
 
 **High-Performance Real-Time Data Visualization System**
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-PulseRender-4f46e5?style=for-the-badge&logo=vercel)](https://pulserender-seven.vercel.app/dashboard)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react)](https://react.dev)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](./LICENSE)
+
+🌐 **Live Production Link**: [https://pulserender-seven.vercel.app/dashboard](https://pulserender-seven.vercel.app/dashboard)
 
 PulseRender is an enterprise-grade real-time data visualization dashboard designed to continuously ingest, process, and render **10,000+ data points at 60 FPS** while maintaining sub-2ms interaction response latency and zero memory leaks.
 

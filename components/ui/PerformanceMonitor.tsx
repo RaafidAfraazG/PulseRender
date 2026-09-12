@@ -8,7 +8,7 @@
  * Includes automated benchmark runner button.
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { monitor } from '@/lib/performance/monitor';
 import { runBenchmark } from '@/lib/performance/benchmark';
 import type { PerformanceSnapshot, BenchmarkResult } from '@/lib/performance/types';
@@ -22,11 +22,40 @@ export function PerformanceMonitor({ onClose }: PerformanceMonitorProps): React.
   const [metrics, setMetrics] = useState<PerformanceSnapshot>(() => monitor.getSnapshot());
   const [isBenchmarking, setIsBenchmarking] = useState(false);
   const [lastBenchmark, setLastBenchmark] = useState<BenchmarkResult | null>(null);
+  const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const unbind = monitor.subscribe(setMetrics);
     return unbind;
   }, []);
+
+  // Close when clicking outside panel or pressing Escape key
+  useEffect(() => {
+    const handleMouseDown = (e: MouseEvent | TouchEvent) => {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    const timer = setTimeout(() => {
+      document.addEventListener('mousedown', handleMouseDown);
+      document.addEventListener('touchstart', handleMouseDown);
+      document.addEventListener('keydown', handleKeyDown);
+    }, 20);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('touchstart', handleMouseDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
   const handleRunBenchmark = async () => {
     setIsBenchmarking(true);
@@ -46,7 +75,7 @@ export function PerformanceMonitor({ onClose }: PerformanceMonitorProps): React.
         : styles.poor;
 
   return (
-    <aside className={styles.overlay} aria-label="Performance metrics monitor">
+    <aside ref={panelRef} className={styles.overlay} aria-label="Performance metrics monitor">
       {/* ── Header ────────────────────────────────────────────────── */}
       <header className={styles.header}>
         <div className={styles.titleGroup}>

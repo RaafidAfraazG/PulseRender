@@ -3,12 +3,11 @@
 /**
  * PulseRender - Dashboard Main Content Layout
  *
- * Enterprise data visualization dashboard layout composing system summary, controls,
+ * Enterprise data visualization dashboard layout composing analytical controls,
  * stress test triggers, real-time Canvas charts, virtualized data grid, and performance monitor.
  */
 
 import { DashboardHeader } from '@/components/ui/DashboardHeader';
-import { StreamStatus } from '@/components/ui/StreamStatus';
 import { DashboardControls } from '@/components/controls/DashboardControls';
 import { StressTestControls } from '@/components/controls/StressTestControls';
 import { ChartGrid } from '@/components/dashboard/ChartGrid';
@@ -36,27 +35,10 @@ export function DashboardContent({ config }: DashboardContentProps): React.JSX.E
       {/* ── Main Dashboard Workspace ──────────────────────────────────────── */}
       <main className={styles.main} id="main-content">
 
-        {/* ── System Overview Bar ──────────────────────────────────────────── */}
-        <section className={styles.summaryBar} aria-label="System overview">
-          <div className={styles.summaryInner}>
-            <div className={styles.summaryText}>
-              <strong>Real-Time Analytics Engine</strong>
-              <span>Continuously ingesting, processing, and rendering high-frequency metric streams at 60 FPS.</span>
-            </div>
-            <StreamStatus />
-            <div className={styles.summaryStats}>
-              <Stat label="Target Frame Rate" value="60 FPS" />
-              <Stat label="Rendering Surface" value="Canvas 2D" />
-              <Stat label="Table Engine" value="Virtualized" />
-              <Stat label="Data Pipeline" value="Zero-Copy" />
-            </div>
-          </div>
-        </section>
-
         {/* ── Dashboard Controls ──────────────────────────────────────────── */}
         <DashboardControls />
 
-        {/* ── Stress Test Workloads ────────────────────────────────────────── */}
+        {/* ── Stress Test Workloads & Live Status ──────────────────────────── */}
         <StressTestControls />
 
         {/* ── Visualization Charts Grid ───────────────────────────────────── */}
@@ -82,15 +64,6 @@ export function DashboardContent({ config }: DashboardContentProps): React.JSX.E
           Live SSE Feed ↗
         </a>
       </footer>
-    </div>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }): React.JSX.Element {
-  return (
-    <div className={styles.stat}>
-      <span className={styles.statValue}>{value}</span>
-      <span className={styles.statLabel}>{label}</span>
     </div>
   );
 }

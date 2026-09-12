@@ -9,6 +9,7 @@
 
 import { useState } from 'react';
 import { useDataStore } from '@/components/providers/DataStreamProvider';
+import { StreamStatus } from '@/components/ui/StreamStatus';
 import type { StressTestLevel } from '@/lib/performance/types';
 import styles from './StressTestControls.module.css';
 
@@ -35,38 +36,42 @@ export function StressTestControls(): React.JSX.Element {
 
   return (
     <div className={styles.stressContainer} aria-label="Stress test controls">
-      <div className={styles.label}>
-        <span aria-hidden="true">⚡</span>
-        <span>Stress Test</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+        <div className={styles.label}>
+          <span aria-hidden="true">⚡</span>
+          <span>Stress Test</span>
+        </div>
+
+        <div className={styles.buttonGroup} role="radiogroup" aria-label="Workload size">
+          {STRESS_LEVELS.map((lvl) => {
+            const isActive = activeLevel === lvl.id;
+            return (
+              <button
+                key={lvl.id}
+                type="button"
+                className={`${styles.btn} ${isActive ? styles.btnActive : ''}`}
+                aria-checked={isActive}
+                role="radio"
+                onClick={() => handleSelectLevel(lvl.id, lvl.count)}
+              >
+                {lvl.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {activeLevel !== 'live' && (
+          <button
+            type="button"
+            className={styles.liveBtn}
+            onClick={handleReturnToLive}
+          >
+            <span>📡 Return to Live Stream</span>
+          </button>
+        )}
       </div>
 
-      <div className={styles.buttonGroup} role="radiogroup" aria-label="Workload size">
-        {STRESS_LEVELS.map((lvl) => {
-          const isActive = activeLevel === lvl.id;
-          return (
-            <button
-              key={lvl.id}
-              type="button"
-              className={`${styles.btn} ${isActive ? styles.btnActive : ''}`}
-              aria-checked={isActive}
-              role="radio"
-              onClick={() => handleSelectLevel(lvl.id, lvl.count)}
-            >
-              {lvl.label}
-            </button>
-          );
-        })}
-      </div>
-
-      {activeLevel !== 'live' && (
-        <button
-          type="button"
-          className={styles.liveBtn}
-          onClick={handleReturnToLive}
-        >
-          <span>📡 Return to Live Stream</span>
-        </button>
-      )}
+      <StreamStatus />
     </div>
   );
 }
