@@ -64,19 +64,23 @@
 }
 
 .resetBtn {
-  background: #f1f5f9;
-  color: #64748b;
-  border: 1px solid #cbd5e1;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
   border-radius: var(--radius-sm);
-  padding: 2px 6px;
+  padding: 2px 7px;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
   transition: all 120ms ease;
-  margin-left: 2px;
+  margin-left: 3px;
 }
 
 .resetBtn:hover {
-  background: #e2e8f0;
-  color: #0f172a;
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
 }
