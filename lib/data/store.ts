@@ -57,15 +57,11 @@ export class DataStore {
 
       buf.push(point);
 
-      // Evict oldest when over capacity (simple slice - not circular array)
+      // Evict oldest when over capacity to maintain strict ring buffer ceiling
       if (buf.length > this.maxPerCategory) {
-        // Remove oldest 10 % to amortise the cost
-        const evict = Math.max(1, Math.floor(this.maxPerCategory * 0.1));
+        const evict = buf.length - this.maxPerCategory;
         buf.splice(0, evict);
-        this.totalStoredCount -= evict;
       }
-
-      this.totalStoredCount++;
     }
 
     this.totalReceivedCount += points.length;

@@ -62,7 +62,7 @@ export const DEFAULT_DASHBOARD_CONFIG: DashboardConfig = {
   stream: {
     pointsPerTick: 100,        // 100 points × 100 ticks/second → 10k+/s
     tickIntervalMs: 100,       // 10 Hz update rate
-    maxBufferSize: 50_000,     // ring buffer ceiling
+    maxBufferSize: 10_240,     // ring buffer ceiling (capped at 10K target for 60 FPS)
     categoryCount: 4,          // number of distinct data series
   },
 
